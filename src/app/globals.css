@@ -1154,6 +1154,15 @@ a.btn-white-outline svg {
   .portal-mobile-backdrop {
     display: none !important;
   }
+  .portal-desktop-only {
+    display: block !important;
+  }
+}
+
+@media (max-width: 992px) {
+  .portal-desktop-only {
+    display: none !important;
+  }
 }
 
 

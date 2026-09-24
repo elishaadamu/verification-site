@@ -134,7 +134,7 @@ export default function AdminPage() {
 
       {/* Mobile Top Header Bar with Sidebar Toggle Button */}
       <div className="portal-mobile-bar portal-mobile-bar-dark">
-        <div style={{ display: "flex", alignItems: "center", gap: "0.85rem" }}>
+        <div style={{ display: "flex", alignItems: "center" }}>
           <button
             onClick={() => setSidebarOpen(true)}
             className="portal-toggle-btn portal-toggle-btn-dark"
@@ -142,9 +142,6 @@ export default function AdminPage() {
           >
             <Menu size={20} />
           </button>
-          <Link href="/" style={{ textDecoration: "none" }}>
-            <Logo variant="white" showText={false} />
-          </Link>
         </div>
 
         <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", position: "relative" }}>
@@ -520,8 +517,9 @@ export default function AdminPage() {
 
       {/* Main Workspace */}
       <main className="portal-main-content" style={{ flexGrow: 1, padding: "clamp(1.25rem, 3vw, 2.5rem)", overflowY: "auto" }}>
-        {/* Top Header with Admin Profile Avatar Dropdown */}
+        {/* Top Header with Admin Profile Avatar Dropdown (Desktop Only) */}
         <div
+          className="portal-desktop-only"
           style={{
             display: "flex",
             justifyContent: "space-between",

@@ -128,7 +128,7 @@ export default function DashboardPage() {
     <div className="portal-layout" style={{ minHeight: "100vh", display: "flex", backgroundColor: "var(--off-white)" }}>
       {/* Mobile Top Header Bar with Sidebar Toggle Button */}
       <div className="portal-mobile-bar">
-        <div style={{ display: "flex", alignItems: "center", gap: "0.85rem" }}>
+        <div style={{ display: "flex", alignItems: "center" }}>
           <button
             onClick={() => setSidebarOpen(true)}
             className="portal-toggle-btn"
@@ -136,9 +136,6 @@ export default function DashboardPage() {
           >
             <Menu size={20} />
           </button>
-          <Link href="/" style={{ textDecoration: "none", display: "inline-block" }}>
-            <Logo variant="header" showText={false} />
-          </Link>
         </div>
 
         <div style={{ position: "relative" }}>
@@ -594,8 +591,8 @@ export default function DashboardPage() {
               <span>Manual Registration</span>
             </button>
 
-            {/* Interactive User Avatar (Details placed in Avatar) */}
-            <div style={{ position: "relative" }}>
+            {/* Interactive User Avatar (Desktop Only - Mobile uses Top Bar Avatar) */}
+            <div className="portal-desktop-only" style={{ position: "relative" }}>
               <button
                 onClick={() => setAvatarDropdownOpen(!avatarDropdownOpen)}
                 className="portal-avatar-btn"
