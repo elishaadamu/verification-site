@@ -43,11 +43,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={manrope.variable}>
+    <html lang="en" className={manrope.variable} data-scroll-behavior="smooth" suppressHydrationWarning>
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
-      <body className={manrope.className}>
+      <body className={manrope.className} suppressHydrationWarning>
         {children}
       </body>
     </html>

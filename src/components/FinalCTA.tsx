@@ -155,7 +155,7 @@ export default function FinalCTA() {
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
               <CheckCircle2 size={15} color="#FFFFFF" />
-              <span>Live Application Tracking</span>
+              <span>Official Clearance History</span>
             </div>
           </div>
         </div>

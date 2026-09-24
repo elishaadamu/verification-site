@@ -2,512 +2,434 @@
 
 import React from "react";
 import Link from "next/link";
-import { ArrowRight, Search, ShieldCheck, CheckCircle2, Lock, Clock, FileCheck } from "lucide-react";
+import Image from "next/image";
+import {
+  ArrowRight,
+  Search,
+  ShieldCheck,
+  CheckCircle2,
+  Clock,
+  Sparkles,
+  Lock,
+} from "lucide-react";
 
 export default function Hero() {
   return (
     <section
       id="home"
+      className="hero-section"
       style={{
         position: "relative",
-        paddingTop: "5rem",
-        paddingBottom: "5.5rem",
+        width: "100%",
+        marginLeft: 0,
+        marginRight: 0,
+        backgroundColor: "#06321D",
+        backgroundImage: `
+          radial-gradient(circle at 75% 35%, rgba(22, 168, 102, 0.24) 0%, transparent 60%),
+          radial-gradient(circle at 20% 85%, rgba(8, 116, 67, 0.32) 0%, transparent 65%),
+          linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px)
+        `,
+        backgroundSize: "100% 100%, 100% 100%, 48px 48px, 48px 48px",
         overflow: "hidden",
-        backgroundColor: "var(--white)",
+        color: "#FFFFFF",
       }}
     >
-      {/* Subtle green ambient background glow (clean, non-neon, predominantly white) */}
+      {/* Ambient Glow Spheres in the background */}
       <div
         style={{
           position: "absolute",
-          top: "-15%",
-          right: "-5%",
-          width: "600px",
-          height: "600px",
-          borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(233, 248, 240, 0.6) 0%, rgba(255, 255, 255, 0) 70%)",
-          pointerEvents: "none",
-          zIndex: 0,
-        }}
-      />
-      <div
-        style={{
-          position: "absolute",
-          bottom: "0",
-          left: "-10%",
+          top: "-100px",
+          right: "10%",
           width: "500px",
           height: "500px",
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(244, 251, 247, 0.7) 0%, rgba(255, 255, 255, 0) 70%)",
+          background: "radial-gradient(circle, rgba(22, 168, 102, 0.18) 0%, transparent 70%)",
+          pointerEvents: "none",
+          zIndex: 0,
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          bottom: "-80px",
+          left: "5%",
+          width: "400px",
+          height: "400px",
+          borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(8, 116, 67, 0.25) 0%, transparent 70%)",
           pointerEvents: "none",
           zIndex: 0,
         }}
       />
 
-      <div className="container" style={{ position: "relative", zIndex: 1 }}>
-        <div className="hero-grid">
-          {/* Left Column: Copy & Actions */}
-          <div className="hero-content">
-            {/* Eyebrow */}
+      {/* Main Inner Container: Full-width responsive container */}
+      <div
+        className="hero-inner-container"
+        style={{
+          position: "relative",
+          zIndex: 1,
+          width: "100%",
+          maxWidth: "1400px",
+          margin: "0 auto",
+          padding: "clamp(3rem, 6vw, 5rem) clamp(1.25rem, 3.5vw, 2.75rem) clamp(3.5rem, 7vw, 6rem)",
+        }}
+      >
+        <div className="hero-2col-grid">
+          {/* LEFT COLUMN: Bold Headline, Subtitle, CTAs & Micro-Trust Indicators */}
+          <div className="hero-text-col">
+            {/* Top Announcement Pill */}
             <div
-              className="badge-pill"
               style={{
-                marginBottom: "1.25rem",
                 display: "inline-flex",
                 alignItems: "center",
-                gap: "0.5rem",
-                padding: "0.4rem 0.95rem",
+                gap: "0.55rem",
+                padding: "0.35rem 0.95rem",
+                borderRadius: "9999px",
+                backgroundColor: "rgba(255, 255, 255, 0.08)",
+                border: "1px solid rgba(255, 255, 255, 0.16)",
+                backdropFilter: "blur(8px)",
+                marginBottom: "1.5rem",
               }}
             >
               <span
                 style={{
-                  width: "6px",
-                  height: "6px",
-                  borderRadius: "50%",
-                  backgroundColor: "var(--primary-emerald)",
-                }}
-              />
-              <span
-                style={{
-                  fontSize: "0.78rem",
+                  display: "inline-block",
+                  padding: "0.15rem 0.55rem",
+                  borderRadius: "9999px",
+                  backgroundColor: "#16A866",
+                  color: "#FFFFFF",
+                  fontSize: "0.72rem",
                   fontWeight: 700,
-                  letterSpacing: "0.1em",
+                  letterSpacing: "0.04em",
                   textTransform: "uppercase",
-                  color: "var(--primary-emerald)",
                 }}
               >
-                SECURE • SIMPLE • VERIFIED
+                New
+              </span>
+              <span
+                style={{
+                  fontSize: "0.82rem",
+                  fontWeight: 500,
+                  color: "rgba(255, 255, 255, 0.92)",
+                  letterSpacing: "0.02em",
+                }}
+              >
+                National Identity Clearance & Amendments Upgraded
               </span>
             </div>
 
-            {/* Main Headline */}
+            {/* Bold Headline */}
             <h1
+              className="hero-heading"
               style={{
-                color: "var(--text-primary)",
-                fontWeight: 700,
-                lineHeight: 1.12,
-                marginBottom: "1.25rem",
+                fontSize: "clamp(2.35rem, 4.4vw, 3.85rem)",
+                fontWeight: 800,
+                lineHeight: 1.15,
+                letterSpacing: "-0.03em",
+                color: "#FFFFFF",
+                marginBottom: "1.35rem",
               }}
             >
-              Your Verification Process,
-              <br />
-              <span style={{ color: "var(--primary-emerald)" }}>
-                Made Simple.
+              Official Identity Clearance &amp; Amendments,{" "}
+              <span
+                style={{
+                  color: "#4AE396",
+                  display: "inline",
+                }}
+              >
+                Made Seamless.
               </span>
             </h1>
 
-            {/* Supporting Text */}
+            {/* Subtitle */}
             <p
+              className="hero-subheading"
               style={{
-                color: "var(--text-secondary)",
-                fontSize: "1.15rem",
-                lineHeight: 1.6,
-                maxWidth: "540px",
+                fontSize: "clamp(1.05rem, 1.8vw, 1.2rem)",
+                color: "rgba(233, 248, 240, 0.88)",
+                lineHeight: 1.65,
+                maxWidth: "600px",
                 marginBottom: "2.25rem",
               }}
             >
-              Submit your request online, track its progress, and receive updates
-              from one secure platform.
+              Submit requests online, verify biometrics in real-time, track end-to-end
+              regulatory clearance, and obtain cryptographically sealed certificates without delays.
             </p>
 
-            {/* Dedicated Page CTAs (No Modals) */}
-            <div
-              style={{
-                display: "flex",
-                flexWrap: "wrap",
-                gap: "1rem",
-                alignItems: "center",
-              }}
-            >
+            {/* Action Buttons Row */}
+            <div className="hero-cta-group">
               <Link
-                href="/apply"
-                className="btn btn-primary"
+                href="/dashboard?tab=products"
+                className="hero-btn-primary"
                 style={{
-                  fontSize: "1.05rem",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "0.6rem",
                   padding: "0.95rem 1.85rem",
-                  borderRadius: "12px",
+                  borderRadius: "9999px",
+                  backgroundColor: "#16A866",
+                  color: "#FFFFFF",
+                  fontWeight: 700,
+                  fontSize: "1rem",
+                  border: "none",
+                  boxShadow: "0 8px 24px rgba(22, 168, 102, 0.35)",
+                  transition: "all 0.2s ease",
+                  textDecoration: "none",
+                  whiteSpace: "nowrap",
                 }}
               >
-                <span>Start a Registration</span>
-                <ArrowRight size={18} />
+                <ShieldCheck size={19} color="#FFFFFF" />
+                <span style={{ color: "#FFFFFF" }}>Start Verification</span>
+                <ArrowRight size={16} color="#FFFFFF" />
               </Link>
 
-              <Link
-                href="/track"
-                className="btn btn-secondary"
+              <a
+                href="/#services"
+                className="hero-btn-secondary"
                 style={{
-                  fontSize: "1.05rem",
-                  padding: "0.95rem 1.85rem",
-                  borderRadius: "12px",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "0.6rem",
+                  padding: "0.95rem 1.75rem",
+                  borderRadius: "9999px",
+                  backgroundColor: "rgba(255, 255, 255, 0.08)",
+                  border: "1px solid rgba(255, 255, 255, 0.22)",
+                  color: "#FFFFFF",
+                  fontWeight: 600,
+                  fontSize: "1rem",
+                  backdropFilter: "blur(10px)",
+                  transition: "all 0.2s ease",
+                  textDecoration: "none",
+                  whiteSpace: "nowrap",
                 }}
               >
-                <Search size={18} style={{ color: "var(--primary-emerald)" }} />
-                <span>Track Application</span>
-              </Link>
+                <span>Available Products</span>
+                <ArrowRight size={16} color="#4AE396" />
+              </a>
             </div>
 
-            {/* Trust Micro-notes */}
+            {/* Institutional Trust Highlights */}
             <div
+              className="hero-trust-highlights"
               style={{
                 display: "flex",
+                flexWrap: "wrap",
                 alignItems: "center",
                 gap: "1.5rem",
-                marginTop: "2.25rem",
-                paddingTop: "1.5rem",
-                borderTop: "1px solid var(--border-color)",
-                flexWrap: "wrap",
+                marginTop: "2.5rem",
+                paddingTop: "1.75rem",
+                borderTop: "1px solid rgba(255, 255, 255, 0.12)",
               }}
             >
               <div style={{ display: "flex", alignItems: "center", gap: "0.45rem" }}>
-                <CheckCircle2 size={16} color="var(--primary-emerald)" />
-                <span style={{ fontSize: "0.85rem", fontWeight: 600, color: "var(--text-secondary)" }}>
-                  Official Digital Submissions
+                <CheckCircle2 size={16} color="#4AE396" />
+                <span style={{ fontSize: "0.85rem", color: "rgba(233, 248, 240, 0.9)", fontWeight: 500 }}>
+                  99.98% Accuracy
                 </span>
               </div>
               <div style={{ display: "flex", alignItems: "center", gap: "0.45rem" }}>
-                <Lock size={16} color="var(--primary-emerald)" />
-                <span style={{ fontSize: "0.85rem", fontWeight: 600, color: "var(--text-secondary)" }}>
-                  Protected Data Access
+                <Clock size={16} color="#4AE396" />
+                <span style={{ fontSize: "0.85rem", color: "rgba(233, 248, 240, 0.9)", fontWeight: 500 }}>
+                  2.4-Hour Turnaround
+                </span>
+              </div>
+              <div style={{ display: "flex", alignItems: "center", gap: "0.45rem" }}>
+                <Lock size={16} color="#4AE396" />
+                <span style={{ fontSize: "0.85rem", color: "rgba(233, 248, 240, 0.9)", fontWeight: 500 }}>
+                  Cryptographically Sealed
                 </span>
               </div>
             </div>
           </div>
 
-          {/* Right Column: Floating Digital Verification Card (Fixed: No Awkward Overlap!) */}
-          <div className="hero-visual">
-            <div className="digital-card-container">
-              {/* Satellite Tag 1 - Cleanly placed ABOVE card */}
-              <div className="satellite-tag satellite-tag-top">
-                <div className="satellite-icon-emerald">
-                  <Clock size={15} />
-                </div>
-                <div>
-                  <span className="satellite-title">Fast Processing</span>
-                  <span className="satellite-desc"> • Avg 24–48h Turnaround</span>
-                </div>
-              </div>
-
-              {/* Main Digital Verification Card */}
-              <div className="verification-card">
-                {/* Header Strip with Security Chip & Verification Status */}
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    paddingBottom: "1.25rem",
-                    borderBottom: "1px solid var(--border-color)",
-                  }}
-                >
-                  <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
-                    <div
-                      style={{
-                        width: "36px",
-                        height: "36px",
-                        borderRadius: "10px",
-                        background: "var(--light-green)",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        color: "var(--primary-emerald)",
-                      }}
-                    >
-                      <ShieldCheck size={20} />
-                    </div>
-                    <div>
-                      <div
-                        style={{
-                          fontSize: "0.72rem",
-                          fontWeight: 600,
-                          letterSpacing: "0.06em",
-                          textTransform: "uppercase",
-                          color: "var(--text-muted)",
-                        }}
-                      >
-                        OFFICIAL RECORD
-                      </div>
-                      <div
-                        style={{
-                          fontSize: "0.92rem",
-                          fontWeight: 700,
-                          color: "var(--text-primary)",
-                        }}
-                      >
-                        Verification Registry
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Verified badge */}
-                  <div
+          {/* RIGHT COLUMN: Image & Device Showcase with Floating Status Badges */}
+          <div className="hero-image-col">
+            <div
+              className="hero-mockup-wrapper"
+              style={{
+                position: "relative",
+                width: "100%",
+                maxWidth: "460px",
+                margin: "0 auto",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              {/* Floating Card: Clearance Success Rate (Desktop) */}
+              <div
+                className="hero-floating-badge badge-top-left"
+                style={{
+                  position: "absolute",
+                  left: "-14%",
+                  top: "12%",
+                  backgroundColor: "rgba(10, 42, 28, 0.92)",
+                  border: "1px solid rgba(22, 168, 102, 0.35)",
+                  backdropFilter: "blur(14px)",
+                  WebkitBackdropFilter: "blur(14px)",
+                  borderRadius: "16px",
+                  padding: "0.9rem 1.15rem",
+                  boxShadow: "0 14px 34px rgba(0, 0, 0, 0.35)",
+                  zIndex: 4,
+                  minWidth: "175px",
+                }}
+              >
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "0.25rem" }}>
+                  <span style={{ fontSize: "0.72rem", color: "rgba(255, 255, 255, 0.72)", fontWeight: 500 }}>
+                    Clearance Rate
+                  </span>
+                  <span
                     style={{
-                      display: "inline-flex",
-                      alignItems: "center",
-                      gap: "0.35rem",
-                      backgroundColor: "var(--light-green)",
-                      border: "1px solid rgba(8, 116, 67, 0.2)",
-                      padding: "0.35rem 0.85rem",
-                      borderRadius: "9999px",
-                      color: "var(--primary-emerald)",
-                      fontSize: "0.85rem",
-                      fontWeight: 600,
-                    }}
-                  >
-                    <CheckCircle2 size={14} />
-                    <span>✓ Identity Verified</span>
-                  </div>
-                </div>
-
-                {/* Card Body with Key Fields */}
-                <div style={{ padding: "1.5rem 0", display: "flex", flexDirection: "column", gap: "1.25rem" }}>
-                  <div
-                    style={{
-                      display: "grid",
-                      gridTemplateColumns: "1fr 1fr",
-                      gap: "1.25rem",
-                    }}
-                  >
-                    <div>
-                      <div className="card-label">Application ID</div>
-                      <div
-                        style={{
-                          fontFamily: "monospace",
-                          fontSize: "1.25rem",
-                          fontWeight: 700,
-                          color: "var(--text-primary)",
-                          letterSpacing: "0.03em",
-                        }}
-                      >
-                        VRF-20481
-                      </div>
-                    </div>
-                    <div>
-                      <div className="card-label">Service</div>
-                      <div
-                        style={{
-                          fontSize: "1.1rem",
-                          fontWeight: 700,
-                          color: "var(--text-primary)",
-                        }}
-                      >
-                        IPE Clearance
-                      </div>
-                    </div>
-                  </div>
-
-                  <div
-                    style={{
-                      display: "grid",
-                      gridTemplateColumns: "1fr 1fr",
-                      gap: "1.25rem",
-                      paddingTop: "0.85rem",
-                      borderTop: "1px dashed var(--border-color)",
-                    }}
-                  >
-                    <div>
-                      <div className="card-label">Status</div>
-                      <div
-                        style={{
-                          display: "inline-flex",
-                          alignItems: "center",
-                          gap: "0.45rem",
-                          backgroundColor: "var(--light-green)",
-                          color: "var(--primary-emerald)",
-                          padding: "0.35rem 0.85rem",
-                          borderRadius: "9999px",
-                          fontSize: "0.85rem",
-                          fontWeight: 600,
-                          border: "1px solid rgba(8, 116, 67, 0.2)",
-                        }}
-                      >
-                        <span className="pulse-dot" />
-                        <span>Processing</span>
-                      </div>
-                    </div>
-                    <div>
-                      <div className="card-label">Submitted</div>
-                      <div
-                        style={{
-                          fontSize: "0.95rem",
-                          fontWeight: 600,
-                          color: "var(--text-secondary)",
-                        }}
-                      >
-                        24 September 2026
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Card Footer: Clean, unobstructed Token & Stage Strip */}
-                <div
-                  style={{
-                    backgroundColor: "var(--very-light-green)",
-                    margin: "0 -1.85rem -1.85rem -1.85rem",
-                    padding: "1.1rem 1.85rem",
-                    borderTop: "1px solid var(--border-color)",
-                    borderBottomLeftRadius: "20px",
-                    borderBottomRightRadius: "20px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                  }}
-                >
-                  <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-                    <Lock size={14} color="var(--primary-emerald)" />
-                    <span
-                      style={{
-                        fontFamily: "monospace",
-                        fontSize: "0.78rem",
-                        color: "var(--text-secondary)",
-                        fontWeight: 600,
-                      }}
-                    >
-                      AUTH-TOKEN: 8f4a-92b1
-                    </span>
-                  </div>
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "0.45rem",
-                      fontSize: "0.78rem",
+                      fontSize: "0.68rem",
                       fontWeight: 700,
-                      color: "var(--primary-emerald)",
-                      letterSpacing: "0.04em",
+                      padding: "0.15rem 0.45rem",
+                      borderRadius: "6px",
+                      backgroundColor: "rgba(22, 168, 102, 0.25)",
+                      color: "#4AE396",
                     }}
                   >
-                    <CheckCircle2 size={13} />
-                    <span>STAGE 3 / 4</span>
+                    +4.8%
+                  </span>
+                </div>
+                <div style={{ fontSize: "1.35rem", fontWeight: 800, color: "#FFFFFF" }}>
+                  99.98%
+                </div>
+                <div style={{ fontSize: "0.68rem", color: "rgba(233, 248, 240, 0.7)", marginTop: "0.15rem" }}>
+                  First-pass registry match
+                </div>
+              </div>
+
+              {/* Floating Card: Fast Turnaround (Desktop) */}
+              <div
+                className="hero-floating-badge badge-top-right"
+                style={{
+                  position: "absolute",
+                  right: "-12%",
+                  top: "20%",
+                  backgroundColor: "rgba(10, 42, 28, 0.92)",
+                  border: "1px solid rgba(22, 168, 102, 0.35)",
+                  backdropFilter: "blur(14px)",
+                  WebkitBackdropFilter: "blur(14px)",
+                  borderRadius: "16px",
+                  padding: "0.9rem 1.15rem",
+                  boxShadow: "0 14px 34px rgba(0, 0, 0, 0.35)",
+                  zIndex: 4,
+                  minWidth: "175px",
+                }}
+              >
+                <div style={{ display: "flex", alignItems: "center", gap: "0.45rem", marginBottom: "0.25rem" }}>
+                  <Clock size={13} color="#4AE396" />
+                  <span style={{ fontSize: "0.72rem", color: "rgba(255, 255, 255, 0.72)", fontWeight: 500 }}>
+                    Turnaround
+                  </span>
+                </div>
+                <div style={{ fontSize: "1.35rem", fontWeight: 800, color: "#FFFFFF" }}>
+                  2.4 Hours
+                </div>
+                <div style={{ fontSize: "0.68rem", color: "#4AE396", marginTop: "0.15rem", fontWeight: 600 }}>
+                  ● Real-time sync
+                </div>
+              </div>
+
+              {/* Floating Card: IPE Clearance Verified & Sealed (Desktop) */}
+              <div
+                className="hero-floating-badge badge-bottom-left"
+                style={{
+                  position: "absolute",
+                  left: "-12%",
+                  bottom: "10%",
+                  backgroundColor: "rgba(10, 42, 28, 0.94)",
+                  border: "1px solid rgba(22, 168, 102, 0.35)",
+                  backdropFilter: "blur(14px)",
+                  WebkitBackdropFilter: "blur(14px)",
+                  borderRadius: "16px",
+                  padding: "0.85rem 1.15rem",
+                  boxShadow: "0 14px 34px rgba(0, 0, 0, 0.35)",
+                  zIndex: 4,
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.75rem",
+                }}
+              >
+                <div
+                  style={{
+                    width: "38px",
+                    height: "38px",
+                    borderRadius: "10px",
+                    backgroundColor: "#16A866",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: "#FFFFFF",
+                    boxShadow: "0 4px 12px rgba(22, 168, 102, 0.4)",
+                    flexShrink: 0,
+                  }}
+                >
+                  <ShieldCheck size={22} color="#FFFFFF" />
+                </div>
+                <div>
+                  <div style={{ fontSize: "0.68rem", color: "#4AE396", fontWeight: 700, textTransform: "uppercase" }}>
+                    IPE Clearance
+                  </div>
+                  <div style={{ fontSize: "0.95rem", fontWeight: 800, color: "#FFFFFF" }}>
+                    ISSUED &amp; SEALED
                   </div>
                 </div>
               </div>
 
-              {/* Satellite Tag 2 - Cleanly placed BELOW card with proper spacing (no overlap!) */}
-              <div className="satellite-tag satellite-tag-bottom">
-                <div className="satellite-icon-green">
-                  <FileCheck size={15} />
-                </div>
-                <div>
-                  <span className="satellite-title">Instant Status Sync</span>
-                  <span className="satellite-desc"> • Encrypted clearance queue</span>
-                </div>
+              {/* Central Phone Device Image */}
+              <div
+                className="hero-device-frame"
+                style={{
+                  position: "relative",
+                  width: "100%",
+                  borderRadius: "26px",
+                  overflow: "hidden",
+                  boxShadow: "0 28px 70px rgba(0, 0, 0, 0.55), 0 0 45px rgba(22, 168, 102, 0.22)",
+                  border: "3px solid rgba(255, 255, 255, 0.16)",
+                  zIndex: 2,
+                }}
+              >
+                <Image
+                  src="/images/hero_mobile.jpg"
+                  alt="Digital Verification Mobile Application"
+                  width={640}
+                  height={850}
+                  priority
+                  style={{
+                    width: "100%",
+                    height: "auto",
+                    display: "block",
+                  }}
+                />
+              </div>
+            </div>
+
+            {/* Mobile / Tablet Compact Stats Grid (Visible when floating badges are hidden on small screens) */}
+            <div className="hero-mobile-stats-grid">
+              <div style={{ padding: "0.75rem", borderRadius: "12px", backgroundColor: "rgba(10, 42, 28, 0.92)", border: "1px solid rgba(22, 168, 102, 0.35)", textAlign: "center" }}>
+                <div style={{ fontSize: "0.68rem", color: "#4AE396", fontWeight: 700 }}>CLEARANCE RATE</div>
+                <div style={{ fontSize: "1.2rem", fontWeight: 800, color: "#FFFFFF" }}>99.98%</div>
+              </div>
+              <div style={{ padding: "0.75rem", borderRadius: "12px", backgroundColor: "rgba(10, 42, 28, 0.92)", border: "1px solid rgba(22, 168, 102, 0.35)", textAlign: "center" }}>
+                <div style={{ fontSize: "0.68rem", color: "#4AE396", fontWeight: 700 }}>TURNAROUND</div>
+                <div style={{ fontSize: "1.2rem", fontWeight: 800, color: "#FFFFFF" }}>2.4 Hours</div>
+              </div>
+              <div style={{ padding: "0.75rem", borderRadius: "12px", backgroundColor: "rgba(10, 42, 28, 0.92)", border: "1px solid rgba(22, 168, 102, 0.35)", textAlign: "center" }}>
+                <div style={{ fontSize: "0.68rem", color: "#4AE396", fontWeight: 700 }}>STATUS</div>
+                <div style={{ fontSize: "1rem", fontWeight: 800, color: "#FFFFFF" }}>IPE SEALED</div>
+              </div>
+              <div style={{ padding: "0.75rem", borderRadius: "12px", backgroundColor: "rgba(10, 42, 28, 0.92)", border: "1px solid rgba(22, 168, 102, 0.35)", textAlign: "center" }}>
+                <div style={{ fontSize: "0.68rem", color: "#FFB800", fontWeight: 700 }}>★★★★★ 5.0</div>
+                <div style={{ fontSize: "1rem", fontWeight: 800, color: "#FFFFFF" }}>140K+ Verified</div>
               </div>
             </div>
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        .hero-grid {
-          display: grid;
-          grid-template-columns: 1fr;
-          gap: 3.5rem;
-          align-items: center;
-        }
-
-        .card-label {
-          font-size: 0.74rem;
-          font-weight: 600;
-          letter-spacing: 0.05em;
-          text-transform: uppercase;
-          color: var(--text-muted);
-          margin-bottom: 0.35rem;
-        }
-
-        .digital-card-container {
-          position: relative;
-          max-width: 480px;
-          margin-left: auto;
-          margin-right: auto;
-          padding: 1.5rem 0;
-        }
-
-        .verification-card {
-          background-color: var(--white);
-          border: 1px solid var(--border-color);
-          border-radius: 20px;
-          padding: 1.85rem;
-          box-shadow: 0 16px 45px rgba(16, 35, 26, 0.08), 0 2px 6px rgba(16, 35, 26, 0.03);
-          position: relative;
-          z-index: 2;
-          transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .verification-card:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 20px 50px rgba(8, 116, 67, 0.1);
-        }
-
-        /* Cleanly docked satellite tags with NO awkward overlaps */
-        .satellite-tag {
-          display: flex;
-          align-items: center;
-          gap: 0.65rem;
-          background: var(--white);
-          border: 1px solid var(--border-color);
-          border-radius: 12px;
-          padding: 0.55rem 1rem;
-          box-shadow: 0 8px 24px rgba(16, 35, 26, 0.06);
-          width: fit-content;
-          z-index: 3;
-        }
-
-        .satellite-tag-top {
-          margin-bottom: 0.75rem;
-          margin-left: auto;
-        }
-
-        .satellite-tag-bottom {
-          margin-top: 0.75rem;
-          margin-right: auto;
-        }
-
-        .satellite-icon-emerald {
-          width: 26px;
-          height: 26px;
-          border-radius: 7px;
-          background-color: var(--light-green);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: var(--primary-emerald);
-          flex-shrink: 0;
-        }
-
-        .satellite-icon-green {
-          width: 26px;
-          height: 26px;
-          border-radius: 7px;
-          background-color: #E8F7ED;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: var(--status-success);
-          flex-shrink: 0;
-        }
-
-        .satellite-title {
-          font-size: 0.82rem;
-          font-weight: 700;
-          color: var(--text-primary);
-        }
-
-        .satellite-desc {
-          font-size: 0.76rem;
-          color: var(--text-secondary);
-        }
-
-        @media (min-width: 960px) {
-          .hero-grid {
-            grid-template-columns: 1.15fr 0.95fr;
-            gap: 4rem;
-          }
-          .digital-card-container {
-            margin-right: 0;
-          }
-        }
-      `}</style>
     </section>
   );
 }

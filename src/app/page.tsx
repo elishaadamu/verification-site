@@ -5,9 +5,11 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import TrustStrip from "@/components/TrustStrip";
+import MetricsStrip from "@/components/MetricsStrip";
+import BiometricShowcase from "@/components/BiometricShowcase";
 import ServicesSection from "@/components/ServicesSection";
+import CertificateShowcase from "@/components/CertificateShowcase";
 import HowItWorks from "@/components/HowItWorks";
-import TrackingSection from "@/components/TrackingSection";
 import SecuritySection from "@/components/SecuritySection";
 import FAQSection from "@/components/FAQSection";
 import FinalCTA from "@/components/FinalCTA";
@@ -21,35 +23,41 @@ export default function Home() {
       <Navbar />
 
       <main style={{ flexGrow: 1 }}>
-        {/* 2. Hero Section with fixed clean digital verification card */}
+        {/* 2. Hero Section (Euphoria reference container card + smartphone + floating stats) */}
         <Hero />
 
-        {/* 3. Trust Strip */}
+        {/* 3. Partner & Authority Trust Strip */}
         <TrustStrip />
 
-        {/* 4. Services Section (Links to dedicated service pages & apply flow) */}
+        {/* 4. High-Impact Metric Cards (4 cards with highlighted emerald card) */}
+        <MetricsStrip />
+
+        {/* 5. Biometric Matching Showcase (Embedding AI-generated biometric face id) */}
+        <BiometricShowcase />
+
+        {/* 6. Core Verification Services Grid */}
         <ServicesSection />
 
-        {/* 5. How It Works (Horizontal desktop / Vertical mobile timeline) */}
+        {/* 7. Cryptographic Certificate Showcase (Embedding AI-generated smartcard) */}
+        <CertificateShowcase />
+
+        {/* 8. How It Works Timeline */}
         <HowItWorks />
 
-        {/* 6. Application Tracking Visual (Mockup with live sample lookups) */}
-        <TrackingSection />
-
-        {/* 7. Security Section (With custom 3D emerald security shield) */}
+        {/* 9. Security & Compliance Architecture (Embedding 3D shield & document scan) */}
         <SecuritySection />
 
-        {/* 8. FAQ Section */}
+        {/* 11. FAQ Accordion */}
         <FAQSection />
 
-        {/* 9. Final Emerald CTA */}
+        {/* 12. Final Call-to-Action Card */}
         <FinalCTA />
       </main>
 
-      {/* 10. Footer */}
+      {/* 13. Footer */}
       <Footer />
 
-      {/* Mobile Sticky Quick Action Bar (Direct page link, no modal) */}
+      {/* Mobile Sticky Quick Action Bar */}
       <div className="mobile-sticky-bar">
         <Link
           href="/apply"

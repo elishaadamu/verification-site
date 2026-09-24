@@ -106,9 +106,9 @@ export default function Footer() {
                   </a>
                 </li>
                 <li>
-                  <Link href="/track" className="footer-link">
-                    Contact
-                  </Link>
+                  <a href="/#faq" className="footer-link">
+                    Support
+                  </a>
                 </li>
               </ul>
             </div>
@@ -133,7 +133,7 @@ export default function Footer() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/dashboard" className="footer-link">
+                  <Link href="/dashboard?tab=transactions" className="footer-link">
                     Transaction History
                   </Link>
                 </li>
@@ -169,67 +169,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        .footer-grid {
-          display: grid;
-          grid-template-columns: 1fr;
-          gap: 3rem;
-          margin-bottom: 3.5rem;
-        }
-
-        .footer-links-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-          gap: 2rem;
-        }
-
-        .footer-col-title {
-          font-size: 0.82rem;
-          font-weight: 700;
-          letter-spacing: 0.07em;
-          text-transform: uppercase;
-          color: var(--text-primary);
-          margin-bottom: 1.15rem;
-        }
-
-        .footer-nav-list {
-          list-style: none;
-          padding: 0;
-          margin: 0;
-          display: flex;
-          flex-direction: column;
-          gap: 0.65rem;
-        }
-
-        .footer-link {
-          font-size: 0.9rem;
-          color: var(--text-secondary);
-          text-decoration: none;
-          transition: color 0.15s ease;
-        }
-
-        .footer-link:hover {
-          color: var(--primary-emerald);
-        }
-
-        .footer-bottom {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding-top: 2rem;
-          border-top: 1px solid var(--border-color);
-          flex-wrap: wrap;
-          gap: 1rem;
-        }
-
-        @media (min-width: 900px) {
-          .footer-grid {
-            grid-template-columns: 340px 1fr;
-            gap: 4rem;
-          }
-        }
-      `}</style>
     </footer>
   );
 }
+

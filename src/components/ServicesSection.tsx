@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import {
   FileText,
@@ -9,10 +9,34 @@ import {
   MapPin,
   CalendarCheck,
   ArrowRight,
-  Check
+  Check,
+  X,
+  ShieldCheck,
+  Clock,
+  FileCheck2,
+  AlertCircle,
+  HelpCircle,
 } from "lucide-react";
 
-export const servicesData = [
+export interface ServiceItem {
+  id: string;
+  slug: string;
+  title: string;
+  icon: any;
+  description: string;
+  details: string;
+  turnaround: string;
+  highlights: string[];
+  fullTaskDescription: {
+    overview: string;
+    requiredDocs: string[];
+    verificationSteps: string[];
+    regulatoryAuthority: string;
+    deliverable: string;
+  };
+}
+
+export const servicesData: ServiceItem[] = [
   {
     id: "01",
     slug: "ipe-clearance",
@@ -20,9 +44,27 @@ export const servicesData = [
     icon: FileText,
     description:
       "Official institutional and educational clearance processing, credential confirmation, and authentic verification documentation.",
+    details:
+      "Designed for candidates and professionals requiring certified confirmation of employment, institutional graduation, and background credentials across accredited bodies.",
     turnaround: "24–48 hours average",
     highlights: ["Official credential record", "Direct institutional dispatch"],
-    details: "Designed for candidates and professionals requiring certified confirmation of employment, institutional graduation, and background credentials across accredited bodies.",
+    fullTaskDescription: {
+      overview:
+        "Designed for candidates, professionals, and corporate directors requiring certified confirmation of institutional credentials, police clearance history, and judicial regulatory standing across accredited federal bodies.",
+      requiredDocs: [
+        "Government-issued National ID, NIN, or valid Passport",
+        "Institutional accreditation or degree certificate copy",
+        "Jurisdiction reference / Employer clearance request letter",
+      ],
+      verificationSteps: [
+        "Primary intake & cryptographic document scan",
+        "Cross-reference against Federal Clearance Board (FCB) database",
+        "Biometric facial geometry match against National Identity Registry (NIDR)",
+        "Automated generation of cryptographically sealed QR Certificate",
+      ],
+      regulatoryAuthority: "Federal Clearance Board & Biometric Standards Authority",
+      deliverable: "Digitally signed IPE Clearance Certificate with tamper-proof QR code & registry reference",
+    },
   },
   {
     id: "02",
@@ -31,9 +73,27 @@ export const servicesData = [
     icon: UserCheck,
     description:
       "Legal identity name update requests, statutory documentation reconciliation, and official registry alignment.",
+    details:
+      "Processes official legal name modifications for marriage, deed poll, or statutory gazette filings with synchronized registry records.",
     turnaround: "48–72 hours average",
     highlights: ["Statutory deed alignment", "Biometric record update"],
-    details: "Processes official legal name modifications for marriage, deed poll, or statutory gazette filings with synchronized registry records.",
+    fullTaskDescription: {
+      overview:
+        "Processes official legal name modifications for marriage, deed poll endorsements, or statutory gazette filings, updating all synchronized civil identity registries.",
+      requiredDocs: [
+        "Existing Primary National Identity Card / Passport",
+        "Certified Deed Poll or Statutory Marriage Certificate",
+        "Sworn Affidavit of Name Change from High Court / Notary Public",
+      ],
+      verificationSteps: [
+        "Validation of legal deed poll against official gazette registries",
+        "Judicial trust endorsement verification",
+        "Biometric profile re-binding with amended surname and given names",
+        "Issue of official Vital Registry Legal Name Amendment Seal",
+      ],
+      regulatoryAuthority: "Civil Registration Commission (CRC) & Apex Judicial Trust",
+      deliverable: "Official Name Amendment Certificate and updated civil registry endorsement",
+    },
   },
   {
     id: "03",
@@ -42,9 +102,27 @@ export const servicesData = [
     icon: PhoneCall,
     description:
       "Primary mobile number updates, two-tier identity re-binding, and secure dual-channel verification alerts.",
+    details:
+      "Re-binds your verified mobile number across your digital profile, ensuring continuous receipt of SMS OTPs and critical status alerts.",
     turnaround: "Same-day processing",
     highlights: ["Instant SMS validation", "Security OTP binding"],
-    details: "Re-binds your verified mobile number across your digital profile, ensuring continuous receipt of SMS OTPs and critical status alerts.",
+    fullTaskDescription: {
+      overview:
+        "Re-binds your verified mobile contact number across your digital citizen profile, ensuring continuous receipt of high-security 2FA OTPs and official clearance status notifications.",
+      requiredDocs: [
+        "National Identity Number (NIN) on file",
+        "Active SIM card registration confirmation from carrier",
+        "Facial liveness biometric scan for security verification",
+      ],
+      verificationSteps: [
+        "Live dual-channel SMS challenge to the newly requested line",
+        "Biometric liveness verification to prevent SIM swap fraud",
+        "Direct registry database re-binding with telecom carrier authority",
+        "Immediate propagation to all linked verification services",
+      ],
+      regulatoryAuthority: "National Identity Registry (NIDR) & Telecom Regulatory Board",
+      deliverable: "Secure 2FA Re-binding Confirmation and active security alert profile",
+    },
   },
   {
     id: "04",
@@ -53,9 +131,27 @@ export const servicesData = [
     icon: MapPin,
     description:
       "Residential and official correspondence record adjustments verified against certified proof-of-residence filings.",
+    details:
+      "Updates official residential and mailing addresses against validated utility, tenancy, or statutory proof-of-residence submissions.",
     turnaround: "24–48 hours average",
     highlights: ["Proof of residency review", "Registry database sync"],
-    details: "Updates official residential and mailing addresses against validated utility, tenancy, or statutory proof-of-residence submissions.",
+    fullTaskDescription: {
+      overview:
+        "Updates your official residential and postal correspondence records against certified municipal utility bills, statutory lease agreements, or property deeds.",
+      requiredDocs: [
+        "Valid proof of residence issued within the last 90 days (Utility Bill or Tenancy Agreement)",
+        "Current National Identification Document",
+        "Postal district code and municipal verification affidavit",
+      ],
+      verificationSteps: [
+        "Optical Character Recognition (OCR) audit of submitted utility / lease proof",
+        "Cross-verification with municipal postal and electoral registers",
+        "Registry address database update and digital timestamp seal",
+        "Dispatch of updated official proof-of-residence certificate",
+      ],
+      regulatoryAuthority: "Civil Registration Commission & Municipal Standards Registry",
+      deliverable: "Certified Digital Residency Certificate with verified geo-location record",
+    },
   },
   {
     id: "05",
@@ -64,27 +160,47 @@ export const servicesData = [
     icon: CalendarCheck,
     description:
       "Vital records birth date rectification with certified vital registry validation and primary document audits.",
+    details:
+      "Validates and rectifies vital birth records against certified national registrar filings and primary birth certificates.",
     turnaround: "48–72 hours average",
     highlights: ["Primary registry verification", "Official certificate audit"],
-    details: "Validates and rectifies vital birth records against certified national registrar filings and primary birth certificates.",
+    fullTaskDescription: {
+      overview:
+        "Audits and rectifies typographical clerical errors or historical discrepancies in recorded dates of birth against primary vital birth registry records and hospital statistics.",
+      requiredDocs: [
+        "Certified Primary Birth Certificate from National Statistics Bureau",
+        "High Court Age Declaration Affidavit or hospital birth records",
+        "Current National Identity Card showing the discrepancy",
+      ],
+      verificationSteps: [
+        "Forensic document verification of primary birth certificate serial numbers",
+        "Direct inquiry with the National Population & Vital Statistics Bureau",
+        "Judicial confirmation of clerical typographical rectification",
+        "Issuance of rectified vital record identity clearance endorsement",
+      ],
+      regulatoryAuthority: "Civil Registration Commission & National Vital Statistics Bureau",
+      deliverable: "Official Date of Birth Rectification Order & Sealed Vital Record Confirmation",
+    },
   },
 ];
 
 export default function ServicesSection() {
+  const [selectedTaskDetail, setSelectedTaskDetail] = useState<ServiceItem | null>(null);
+
   return (
     <section id="services" className="section" style={{ backgroundColor: "var(--white)" }}>
       <div className="container">
         {/* Section Header */}
         <div className="section-header">
           <div className="badge-pill" style={{ marginBottom: "0.85rem" }}>
-            AVAILABLE CLEARANCE & RECORD SERVICES
+            AVAILABLE CLEARANCE &amp; RECORD SERVICES
           </div>
           <h2 className="section-title">
             Verification Services That Work Around You
           </h2>
           <p>
             Choose from five streamlined digital verification workflows engineered for speed, 
-            data confidentiality, and complete tracking clarity.
+            data confidentiality, and complete status transparency.
           </p>
         </div>
 
@@ -175,7 +291,7 @@ export default function ServicesSection() {
                   ))}
                 </div>
 
-                {/* Card Action Link to Dedicated Page */}
+                {/* Card Action Row: View Details (opens modal description) & Start Request (routes to dashboard) */}
                 <div
                   style={{
                     display: "flex",
@@ -186,20 +302,30 @@ export default function ServicesSection() {
                     borderTop: "1px solid var(--border-color)",
                   }}
                 >
-                  <Link
-                    href={`/services/${service.slug}`}
+                  {/* View Details: Does NOT link to any URL, reads the description of the task */}
+                  <button
+                    type="button"
+                    onClick={() => setSelectedTaskDetail(service)}
                     style={{
-                      fontSize: "0.85rem",
+                      background: "none",
+                      border: "none",
+                      padding: 0,
+                      fontSize: "0.88rem",
                       color: "var(--text-secondary)",
                       textDecoration: "underline",
                       fontWeight: 600,
+                      cursor: "pointer",
+                      transition: "color 0.15s ease",
                     }}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = "var(--primary-emerald)")}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-secondary)")}
                   >
                     View Details
-                  </Link>
+                  </button>
 
+                  {/* Start Request: Routes directly to manual registration in user dashboard */}
                   <Link
-                    href={`/apply?service=${encodeURIComponent(service.title)}`}
+                    href="/dashboard?tab=products"
                     style={{
                       display: "inline-flex",
                       alignItems: "center",
@@ -221,71 +347,203 @@ export default function ServicesSection() {
         </div>
       </div>
 
-      <style jsx>{`
-        .services-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-          gap: 1.75rem;
-        }
+      {/* =========================================================================
+          TASK DESCRIPTION MODAL (Opens when clicking 'View Details')
+          Reads full task description, requirements, and steps without page navigation
+          ========================================================================= */}
+      {selectedTaskDetail && (
+        <div className="modal-overlay" onClick={() => setSelectedTaskDetail(null)}>
+          <div
+            className="modal-content"
+            style={{ maxWidth: "620px" }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Header */}
+            <div
+              style={{
+                padding: "1.75rem 2rem",
+                borderBottom: "1px solid var(--border-color)",
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <div>
+                <span className="badge-pill" style={{ marginBottom: "0.35rem", fontSize: "0.72rem" }}>
+                  OFFICIAL TASK SPECIFICATION
+                </span>
+                <h3 style={{ fontSize: "1.45rem", fontWeight: 800, color: "var(--text-primary)" }}>
+                  {selectedTaskDetail.title}
+                </h3>
+              </div>
+              <button
+                type="button"
+                onClick={() => setSelectedTaskDetail(null)}
+                style={{
+                  background: "none",
+                  border: "none",
+                  cursor: "pointer",
+                  color: "var(--text-muted)",
+                  padding: "0.25rem",
+                }}
+                aria-label="Close details"
+              >
+                <X size={22} />
+              </button>
+            </div>
 
-        .service-card {
-          background-color: var(--white);
-          border: 1px solid var(--border-color);
-          border-radius: 18px;
-          padding: 1.85rem;
-          display: flex;
-          flex-direction: column;
-          box-shadow: 0 2px 8px rgba(16, 35, 26, 0.03);
-          position: relative;
-          transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-            background-color 0.25s ease,
-            border-color 0.25s ease,
-            box-shadow 0.25s ease;
-        }
+            {/* Modal Body: Task Description Details */}
+            <div style={{ padding: "1.75rem 2rem", maxHeight: "75vh", overflowY: "auto" }}>
+              {/* Task Overview */}
+              <div style={{ marginBottom: "1.5rem" }}>
+                <h4 style={{ fontSize: "0.82rem", textTransform: "uppercase", letterSpacing: "0.06em", color: "var(--primary-emerald)", fontWeight: 700, marginBottom: "0.5rem" }}>
+                  Task Scope &amp; Purpose
+                </h4>
+                <p style={{ fontSize: "0.95rem", color: "var(--text-primary)", lineHeight: 1.6 }}>
+                  {selectedTaskDetail.fullTaskDescription.overview}
+                </p>
+              </div>
 
-        .service-card:hover {
-          transform: translateY(-4px);
-          background-color: var(--very-light-green);
-          border-color: var(--secondary-emerald);
-          box-shadow: 0 12px 30px rgba(8, 116, 67, 0.08);
-        }
+              {/* Turnaround & Authority Info */}
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "1fr 1fr",
+                  gap: "1rem",
+                  padding: "1rem",
+                  borderRadius: "12px",
+                  backgroundColor: "var(--very-light-green)",
+                  border: "1px solid rgba(8, 116, 67, 0.2)",
+                  marginBottom: "1.5rem",
+                }}
+              >
+                <div>
+                  <span style={{ fontSize: "0.74rem", color: "var(--text-muted)", display: "block" }}>
+                    Standard Turnaround:
+                  </span>
+                  <div style={{ display: "flex", alignItems: "center", gap: "0.35rem", fontWeight: 700, color: "var(--primary-emerald)", fontSize: "0.95rem" }}>
+                    <Clock size={15} />
+                    <span>{selectedTaskDetail.turnaround}</span>
+                  </div>
+                </div>
+                <div>
+                  <span style={{ fontSize: "0.74rem", color: "var(--text-muted)", display: "block" }}>
+                    Regulatory Authority:
+                  </span>
+                  <div style={{ fontWeight: 700, color: "var(--text-primary)", fontSize: "0.88rem" }}>
+                    {selectedTaskDetail.fullTaskDescription.regulatoryAuthority}
+                  </div>
+                </div>
+              </div>
 
-        .service-icon-box {
-          width: 48px;
-          height: 48px;
-          border-radius: 12px;
-          background-color: var(--light-green);
-          border: 1px solid rgba(8, 116, 67, 0.15);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: var(--primary-emerald);
-          transition: all 0.2s ease;
-        }
+              {/* Required Documents Checklist */}
+              <div style={{ marginBottom: "1.5rem" }}>
+                <h4 style={{ fontSize: "0.82rem", textTransform: "uppercase", letterSpacing: "0.06em", color: "var(--text-primary)", fontWeight: 700, marginBottom: "0.6rem" }}>
+                  Required Submissions &amp; Documents:
+                </h4>
+                <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                  {selectedTaskDetail.fullTaskDescription.requiredDocs.map((doc, idx) => (
+                    <div
+                      key={idx}
+                      style={{
+                        display: "flex",
+                        alignItems: "flex-start",
+                        gap: "0.6rem",
+                        padding: "0.65rem 0.85rem",
+                        borderRadius: "8px",
+                        backgroundColor: "var(--surface-muted)",
+                        fontSize: "0.88rem",
+                      }}
+                    >
+                      <FileCheck2 size={16} color="var(--primary-emerald)" style={{ flexShrink: 0, marginTop: "2px" }} />
+                      <span style={{ color: "var(--text-primary)", fontWeight: 500 }}>{doc}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
 
-        .service-card:hover .service-icon-box {
-          background-color: var(--primary-emerald);
-          color: var(--white);
-          border-color: var(--primary-emerald);
-        }
+              {/* Verification Steps */}
+              <div style={{ marginBottom: "1.75rem" }}>
+                <h4 style={{ fontSize: "0.82rem", textTransform: "uppercase", letterSpacing: "0.06em", color: "var(--text-primary)", fontWeight: 700, marginBottom: "0.6rem" }}>
+                  End-to-End Verification Pipeline:
+                </h4>
+                <div style={{ display: "flex", flexDirection: "column", gap: "0.45rem" }}>
+                  {selectedTaskDetail.fullTaskDescription.verificationSteps.map((step, idx) => (
+                    <div
+                      key={idx}
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "0.6rem",
+                        fontSize: "0.85rem",
+                        color: "var(--text-secondary)",
+                      }}
+                    >
+                      <div
+                        style={{
+                          width: "20px",
+                          height: "20px",
+                          borderRadius: "50%",
+                          backgroundColor: "var(--light-green)",
+                          color: "var(--primary-emerald)",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          fontSize: "0.72rem",
+                          fontWeight: 700,
+                          flexShrink: 0,
+                        }}
+                      >
+                        {idx + 1}
+                      </div>
+                      <span>{step}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
 
-        .service-card:hover .card-cta {
-          gap: 0.65rem;
-        }
+              {/* Official Deliverable */}
+              <div
+                style={{
+                  padding: "0.95rem 1.15rem",
+                  borderRadius: "10px",
+                  backgroundColor: "var(--surface-muted)",
+                  border: "1px solid var(--border-color)",
+                  marginBottom: "1.75rem",
+                  fontSize: "0.85rem",
+                }}
+              >
+                <span style={{ color: "var(--text-muted)", fontSize: "0.74rem", display: "block" }}>
+                  Official Clearance Deliverable:
+                </span>
+                <strong style={{ color: "var(--text-primary)" }}>
+                  {selectedTaskDetail.fullTaskDescription.deliverable}
+                </strong>
+              </div>
 
-        .service-card:hover .service-title {
-          color: var(--dark-emerald);
-        }
-
-        @media (max-width: 640px) {
-          .services-grid {
-            grid-template-columns: 1fr;
-          }
-          .service-card {
-            padding: 1.5rem;
-          }
-        }
-      `}</style>
+              {/* Action Buttons */}
+              <div style={{ display: "flex", gap: "1rem" }}>
+                <button
+                  type="button"
+                  onClick={() => setSelectedTaskDetail(null)}
+                  className="btn btn-secondary"
+                  style={{ flex: 1, justifyContent: "center" }}
+                >
+                  Close Description
+                </button>
+                <Link
+                  href="/dashboard?tab=products"
+                  className="btn btn-primary"
+                  style={{ flex: 1, justifyContent: "center" }}
+                >
+                  <ShieldCheck size={16} />
+                  <span>Start This Request</span>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

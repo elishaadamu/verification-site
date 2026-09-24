@@ -1,121 +1,166 @@
 "use client";
 
 import React from "react";
-import { ShieldCheck, Activity, BellRing, Lock } from "lucide-react";
+import { ShieldCheck, Landmark, FileText, Globe, Scale, Award } from "lucide-react";
 
 export default function TrustStrip() {
-  const trustItems = [
-    {
-      icon: ShieldCheck,
-      title: "Secure Registration",
-      desc: "Encrypted submission channels",
-    },
-    {
-      icon: Activity,
-      title: "Transparent Tracking",
-      desc: "Live step-by-step audit logs",
-    },
-    {
-      icon: BellRing,
-      title: "Application Updates",
-      desc: "Automated status alerts",
-    },
-    {
-      icon: Lock,
-      title: "Protected Information",
-      desc: "Strictly controlled account access",
-    },
+  const partners = [
+    { name: "National Identity Registry", code: "NIDR", icon: Landmark, desc: "Direct Biometric Sync" },
+    { name: "Federal Clearance Board", code: "FCB", icon: ShieldCheck, desc: "Judicial Clearance" },
+    { name: "Civil Registration Commission", code: "CRC", icon: FileText, desc: "Vital Registry" },
+    { name: "Biometric Standards Authority", code: "BSA", icon: Globe, desc: "ISO 19794 Certified" },
+    { name: "Apex Judicial Trust", code: "AJT", icon: Scale, desc: "Deed Poll Gazette" },
+    { name: "CertiGov Global", code: "CGG", icon: Award, desc: "Cryptographic Seal" },
   ];
 
   return (
     <section
+      id="partners"
       style={{
         borderTop: "1px solid var(--border-color)",
         borderBottom: "1px solid var(--border-color)",
         backgroundColor: "var(--off-white)",
-        paddingTop: "2.25rem",
-        paddingBottom: "2.25rem",
+        paddingTop: "3.5rem",
+        paddingBottom: "3.5rem",
+        width: "100%",
+        position: "relative",
       }}
     >
-      <div className="container">
+      <div
+        style={{
+          width: "100%",
+          maxWidth: "1360px",
+          margin: "0 auto",
+          paddingLeft: "clamp(1.25rem, 3.5vw, 2.5rem)",
+          paddingRight: "clamp(1.25rem, 3.5vw, 2.5rem)",
+          textAlign: "center",
+        }}
+      >
+        {/* Section Heading */}
+        <div style={{ maxWidth: "700px", margin: "0 auto 2.25rem auto" }}>
+          <div className="badge-pill" style={{ marginBottom: "0.6rem", fontSize: "0.72rem" }}>
+            OFFICIAL REGULATORY CLEARANCE INTEGRATION
+          </div>
+          <h3
+            style={{
+              fontSize: "clamp(1.25rem, 2.4vw, 1.65rem)",
+              fontWeight: 800,
+              color: "var(--text-primary)",
+              marginBottom: "0.5rem",
+              letterSpacing: "-0.02em",
+            }}
+          >
+            Direct Integration with Authoritative Clearance Registries
+          </h3>
+          <p
+            style={{
+              fontSize: "0.92rem",
+              color: "var(--text-secondary)",
+              lineHeight: 1.55,
+            }}
+          >
+            Real-time biometric cross-referencing and cryptographic certification with national databases.
+          </p>
+        </div>
+
+        {/* 6 Authority Badges Grid */}
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
-            gap: "1.75rem",
+            gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+            gap: "1rem",
+            alignItems: "stretch",
           }}
         >
-          {trustItems.map((item, index) => {
-            const Icon = item.icon;
+          {partners.map((partner, index) => {
+            const Icon = partner.icon;
             return (
               <div
                 key={index}
-                className="trust-item"
                 style={{
                   display: "flex",
                   alignItems: "center",
-                  gap: "1rem",
-                  padding: "0.5rem 0.75rem",
-                  borderRadius: "12px",
+                  gap: "0.75rem",
+                  padding: "0.95rem 1.15rem",
+                  borderRadius: "14px",
+                  backgroundColor: "#FFFFFF",
+                  border: "1px solid var(--border-color)",
+                  boxShadow: "0 2px 8px rgba(16, 35, 26, 0.03)",
                   transition: "all 0.2s ease",
+                  textAlign: "left",
                 }}
               >
                 <div
                   style={{
-                    width: "44px",
-                    height: "44px",
-                    borderRadius: "12px",
-                    backgroundColor: "var(--white)",
-                    border: "1px solid var(--border-color)",
+                    width: "36px",
+                    height: "36px",
+                    borderRadius: "10px",
+                    backgroundColor: "var(--light-green)",
+                    color: "var(--primary-emerald)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    color: "var(--primary-emerald)",
                     flexShrink: 0,
-                    boxShadow: "0 2px 6px rgba(16, 35, 26, 0.03)",
-                    transition: "all 0.2s ease",
                   }}
-                  className="trust-icon-box"
                 >
-                  <Icon size={20} strokeWidth={2} />
+                  <Icon size={18} strokeWidth={2.2} />
                 </div>
-                <div>
-                  <h4
+                <div style={{ lineHeight: 1.25, overflow: "hidden" }}>
+                  <div
                     style={{
-                      fontSize: "0.98rem",
-                      fontWeight: 700,
+                      fontSize: "0.88rem",
+                      fontWeight: 800,
                       color: "var(--text-primary)",
-                      marginBottom: "0.15rem",
-                      lineHeight: 1.25,
+                      letterSpacing: "0.02em",
                     }}
                   >
-                    {item.title}
-                  </h4>
-                  <p
+                    {partner.code}
+                  </div>
+                  <div
                     style={{
-                      fontSize: "0.82rem",
+                      fontSize: "0.72rem",
                       color: "var(--text-secondary)",
-                      lineHeight: 1.35,
-                      margin: 0,
+                      fontWeight: 500,
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      marginTop: "2px",
                     }}
+                    title={partner.name}
                   >
-                    {item.desc}
-                  </p>
+                    {partner.name}
+                  </div>
                 </div>
               </div>
             );
           })}
         </div>
-      </div>
 
-      <style jsx>{`
-        .trust-item:hover .trust-icon-box {
-          background-color: var(--light-green);
-          border-color: rgba(8, 116, 67, 0.3);
-          transform: translateY(-2px);
-          box-shadow: 0 4px 12px rgba(8, 116, 67, 0.12);
-        }
-      `}</style>
+        {/* Trust Footnote */}
+        <div
+          style={{
+            marginTop: "2rem",
+            fontSize: "0.85rem",
+            color: "var(--text-secondary)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "0.55rem",
+          }}
+        >
+          <span
+            style={{
+              display: "inline-block",
+              width: "7px",
+              height: "7px",
+              borderRadius: "50%",
+              backgroundColor: "var(--secondary-emerald)",
+              boxShadow: "0 0 8px rgba(22, 168, 102, 0.6)",
+            }}
+          />
+          <span>Join 4,000+ organizations and 140,000+ individuals already cleared</span>
+        </div>
+      </div>
     </section>
   );
 }

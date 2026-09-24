@@ -148,10 +148,10 @@ export default function DashboardPreview() {
                 </div>
 
                 <div className="user-profile-chip">
-                  <div className="avatar-circle">SJ</div>
+                  <div className="avatar-circle">EA</div>
                   <div style={{ display: "none" }} className="profile-text">
                     <div style={{ fontSize: "0.85rem", fontWeight: 700, color: "var(--text-primary)" }}>
-                      Sarah Jenkins
+                      Elisha Adamu
                     </div>
                     <div style={{ fontSize: "0.74rem", color: "var(--text-muted)" }}>
                       Applicant #8941

@@ -2,12 +2,15 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import Logo from "./Logo";
 import { Menu, X, ArrowRight, ShieldCheck, Search, LogIn, UserPlus, LayoutDashboard } from "lucide-react";
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
+  const isHome = pathname === "/";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,115 +20,167 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen]);
+
   const closeMobileMenu = () => setMobileMenuOpen(false);
 
   return (
     <>
       <header
+        className={`main-header ${isHome ? "header-dark-theme" : "header-light-theme"} ${isScrolled ? "is-scrolled" : ""}`}
         style={{
           position: "sticky",
           top: 0,
           left: 0,
           right: 0,
+          width: "100%",
           zIndex: 100,
-          backgroundColor: isScrolled ? "rgba(255, 255, 255, 0.96)" : "#FFFFFF",
-          backdropFilter: isScrolled ? "blur(12px)" : "none",
-          WebkitBackdropFilter: isScrolled ? "blur(12px)" : "none",
-          borderBottom: "1px solid var(--border-color)",
-          transition: "all 0.25s ease",
+          backgroundColor: isHome
+            ? isScrolled
+              ? "rgba(6, 50, 29, 0.95)"
+              : "#06321D"
+            : isScrolled
+              ? "rgba(255, 255, 255, 0.96)"
+              : "#FFFFFF",
+          backdropFilter: isScrolled ? "blur(14px)" : "none",
+          WebkitBackdropFilter: isScrolled ? "blur(14px)" : "none",
+          borderBottom: isHome
+            ? "1px solid rgba(255, 255, 255, 0.08)"
+            : "1px solid var(--border-color)",
+          transition: "background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease",
           boxShadow: isScrolled
-            ? "0 4px 20px rgba(16, 35, 26, 0.05)"
+            ? isHome
+              ? "0 6px 24px rgba(0, 0, 0, 0.35)"
+              : "0 4px 20px rgba(16, 35, 26, 0.05)"
             : "none",
         }}
       >
         <div
-          className="container"
+          className="navbar-inner"
           style={{
+            width: "100%",
+            maxWidth: "1400px",
+            margin: "0 auto",
+            paddingLeft: "clamp(1.25rem, 3.5vw, 2.75rem)",
+            paddingRight: "clamp(1.25rem, 3.5vw, 2.75rem)",
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
             height: "var(--header-height)",
           }}
         >
-          {/* Left: Temporary Verification Logo */}
+          {/* Brand Logo */}
           <Link
             href="/"
             style={{ textDecoration: "none" }}
             aria-label="Verification Platform Home"
           >
-            <Logo variant="header" />
+            <Logo variant={isHome ? "white" : "header"} />
           </Link>
 
           {/* Desktop Navigation Links */}
           <nav
+            className="desktop-nav"
             style={{
               display: "none",
               alignItems: "center",
-              gap: "2rem",
+              gap: "clamp(1rem, 1.8vw, 1.75rem)",
+              flexWrap: "nowrap",
             }}
-            className="desktop-nav"
             aria-label="Main Navigation"
           >
-            <Link href="/" className="nav-link">
+            <Link
+              href="/"
+              className={`nav-link ${isHome ? "nav-link-dark" : ""}`}
+            >
               Home
             </Link>
-            <Link href="/services" className="nav-link">
+            <Link
+              href="/services"
+              className={`nav-link ${isHome ? "nav-link-dark" : ""}`}
+            >
               Services
             </Link>
-            <a href="/#how-it-works" className="nav-link">
+            <a
+              href="/#how-it-works"
+              className={`nav-link ${isHome ? "nav-link-dark" : ""}`}
+            >
               How It Works
             </a>
-            <Link
-              href="/track"
-              className="nav-link"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "0.4rem",
-              }}
+            <a
+              href="/#faq"
+              className={`nav-link ${isHome ? "nav-link-dark" : ""}`}
             >
-              <Search size={14} style={{ color: "var(--primary-emerald)" }} />
-              Track Application
-            </Link>
-            <a href="/#faq" className="nav-link">
               FAQ
             </a>
             <Link
               href="/dashboard"
-              className="nav-link"
+              className={`nav-link ${isHome ? "nav-link-dark" : ""}`}
               style={{
                 display: "inline-flex",
                 alignItems: "center",
                 gap: "0.4rem",
-                color: "var(--primary-emerald)",
+                color: isHome ? "#4AE396" : "var(--primary-emerald)",
                 fontWeight: 600,
               }}
             >
               <LayoutDashboard size={14} />
-              Portal
+              <span>Portal</span>
             </Link>
           </nav>
 
           {/* Right Action CTAs */}
           <div
+            className="desktop-actions"
             style={{
               display: "none",
               alignItems: "center",
               gap: "0.85rem",
+              flexWrap: "nowrap",
             }}
-            className="desktop-actions"
           >
             <Link
               href="/login"
-              className="btn btn-ghost"
-              style={{ padding: "0.65rem 1.15rem" }}
+              className={isHome ? "nav-btn-login-dark" : "btn btn-ghost"}
+              style={
+                isHome
+                  ? {
+                      padding: "0.6rem 1.15rem",
+                      color: "#FFFFFF",
+                      fontSize: "0.95rem",
+                      fontWeight: 600,
+                      borderRadius: "8px",
+                      textDecoration: "none",
+                      transition: "background 0.2s ease",
+                    }
+                  : { padding: "0.65rem 1.15rem" }
+              }
             >
               Login
             </Link>
             <Link
               href="/register"
               className="btn btn-primary"
-              style={{ padding: "0.65rem 1.35rem" }}
+              style={{
+                padding: "0.65rem 1.45rem",
+                borderRadius: "9999px",
+                backgroundColor: "#16A866",
+                color: "#FFFFFF",
+                fontWeight: 700,
+                fontSize: "0.95rem",
+                boxShadow: "0 4px 14px rgba(22, 168, 102, 0.35)",
+                textDecoration: "none",
+              }}
             >
               Create Account
             </Link>
@@ -134,6 +189,7 @@ export default function Navbar() {
           {/* Mobile Menu Hamburger Trigger */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="mobile-toggle"
             style={{
               display: "flex",
               alignItems: "center",
@@ -141,12 +197,13 @@ export default function Navbar() {
               width: "42px",
               height: "42px",
               borderRadius: "10px",
-              border: "1px solid var(--border-color)",
-              background: "var(--very-light-green)",
-              color: "var(--primary-emerald)",
+              border: isHome
+                ? "1px solid rgba(255, 255, 255, 0.2)"
+                : "1px solid var(--border-color)",
+              background: isHome ? "rgba(255, 255, 255, 0.1)" : "var(--very-light-green)",
+              color: isHome ? "#FFFFFF" : "var(--primary-emerald)",
               cursor: "pointer",
             }}
-            className="mobile-toggle"
             aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
           >
             {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
@@ -157,21 +214,24 @@ export default function Navbar() {
       {/* Mobile Navigation Drawer */}
       {mobileMenuOpen && (
         <div
+          className="mobile-drawer"
           style={{
             position: "fixed",
             top: "var(--header-height)",
             left: 0,
             right: 0,
             bottom: 0,
-            backgroundColor: "#FFFFFF",
+            backgroundColor: isHome ? "#06321D" : "#FFFFFF",
+            color: isHome ? "#FFFFFF" : "var(--text-primary)",
             zIndex: 99,
             display: "flex",
             flexDirection: "column",
-            padding: "1.5rem",
+            padding: "1.75rem",
             overflowY: "auto",
-            borderTop: "1px solid var(--border-color)",
+            borderTop: isHome
+              ? "1px solid rgba(255, 255, 255, 0.1)"
+              : "1px solid var(--border-color)",
           }}
-          className="mobile-drawer"
         >
           <div
             style={{
@@ -184,53 +244,40 @@ export default function Navbar() {
             <Link
               href="/"
               onClick={closeMobileMenu}
-              className="mobile-nav-link"
+              className={`mobile-nav-link ${isHome ? "mobile-nav-link-dark" : ""}`}
             >
               Home
             </Link>
             <Link
               href="/services"
               onClick={closeMobileMenu}
-              className="mobile-nav-link"
+              className={`mobile-nav-link ${isHome ? "mobile-nav-link-dark" : ""}`}
             >
               Services
             </Link>
             <a
               href="/#how-it-works"
               onClick={closeMobileMenu}
-              className="mobile-nav-link"
+              className={`mobile-nav-link ${isHome ? "mobile-nav-link-dark" : ""}`}
             >
               How It Works
             </a>
-            <Link
-              href="/track"
-              onClick={closeMobileMenu}
-              className="mobile-nav-link"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-              }}
-            >
-              <span>Track Application</span>
-              <Search size={16} color="var(--primary-emerald)" />
-            </Link>
             <a
               href="/#faq"
               onClick={closeMobileMenu}
-              className="mobile-nav-link"
+              className={`mobile-nav-link ${isHome ? "mobile-nav-link-dark" : ""}`}
             >
               FAQ
             </a>
             <Link
               href="/dashboard"
               onClick={closeMobileMenu}
-              className="mobile-nav-link"
+              className={`mobile-nav-link ${isHome ? "mobile-nav-link-dark" : ""}`}
               style={{
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
-                color: "var(--primary-emerald)",
+                color: isHome ? "#4AE396" : "var(--primary-emerald)",
               }}
             >
               <span>Portal Dashboard</span>
@@ -242,17 +289,29 @@ export default function Navbar() {
             style={{
               display: "flex",
               flexDirection: "column",
-              gap: "0.75rem",
+              gap: "0.85rem",
               marginTop: "auto",
               paddingTop: "1.5rem",
-              borderTop: "1px solid var(--border-color)",
+              borderTop: isHome
+                ? "1px solid rgba(255, 255, 255, 0.12)"
+                : "1px solid var(--border-color)",
             }}
           >
             <Link
               href="/login"
               onClick={closeMobileMenu}
               className="btn btn-secondary"
-              style={{ width: "100%", justifyContent: "center" }}
+              style={
+                isHome
+                  ? {
+                      width: "100%",
+                      justifyContent: "center",
+                      backgroundColor: "rgba(255, 255, 255, 0.1) !important",
+                      borderColor: "rgba(255, 255, 255, 0.25) !important",
+                      color: "#FFFFFF !important",
+                    }
+                  : { width: "100%", justifyContent: "center" }
+              }
             >
               <LogIn size={16} />
               <span>Login</span>
@@ -261,7 +320,7 @@ export default function Navbar() {
               href="/register"
               onClick={closeMobileMenu}
               className="btn btn-primary"
-              style={{ width: "100%", justifyContent: "center" }}
+              style={{ width: "100%", justifyContent: "center", backgroundColor: "#16A866 !important", color: "#FFFFFF !important" }}
             >
               <UserPlus size={16} />
               <span>Create Account</span>
@@ -273,9 +332,9 @@ export default function Navbar() {
               style={{
                 width: "100%",
                 justifyContent: "center",
-                backgroundColor: "var(--light-green)",
-                borderColor: "rgba(8, 116, 67, 0.2)",
-                color: "var(--primary-emerald)",
+                backgroundColor: isHome ? "rgba(22, 168, 102, 0.15) !important" : "var(--light-green) !important",
+                borderColor: isHome ? "rgba(22, 168, 102, 0.35) !important" : "rgba(8, 116, 67, 0.2) !important",
+                color: isHome ? "#4AE396 !important" : "var(--primary-emerald) !important",
               }}
             >
               <ShieldCheck size={16} />
@@ -284,64 +343,6 @@ export default function Navbar() {
           </div>
         </div>
       )}
-
-      <style jsx>{`
-        .nav-link {
-          font-size: 0.95rem;
-          font-weight: 500;
-          color: var(--text-secondary);
-          text-decoration: none;
-          transition: color 0.15s ease;
-          padding: 0.25rem 0;
-          position: relative;
-        }
-
-        .nav-link:hover {
-          color: var(--primary-emerald);
-        }
-
-        .nav-link::after {
-          content: "";
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          width: 0%;
-          height: 2px;
-          background-color: var(--primary-emerald);
-          transition: width 0.2s ease;
-        }
-
-        .nav-link:hover::after {
-          width: 100%;
-        }
-
-        .mobile-nav-link {
-          font-size: 1.15rem;
-          font-weight: 600;
-          color: var(--text-primary);
-          padding: 0.85rem 0.5rem;
-          border-radius: 8px;
-          text-decoration: none;
-          transition: all 0.15s ease;
-        }
-
-        .mobile-nav-link:hover {
-          background-color: var(--very-light-green);
-          color: var(--primary-emerald);
-        }
-
-        @media (min-width: 900px) {
-          .desktop-nav {
-            display: flex !important;
-          }
-          .desktop-actions {
-            display: flex !important;
-          }
-          .mobile-toggle {
-            display: none !important;
-          }
-        }
-      `}</style>
     </>
   );
 }

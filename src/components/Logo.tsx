@@ -2,10 +2,15 @@ import React from "react";
 
 interface LogoProps {
   variant?: "header" | "footer" | "card" | "white";
+  showText?: boolean;
   className?: string;
 }
 
-export default function Logo({ variant = "header", className = "" }: LogoProps) {
+export default function Logo({
+  variant = "header",
+  showText = true,
+  className = "",
+}: LogoProps) {
   const isWhite = variant === "white";
 
   return (
@@ -72,42 +77,44 @@ export default function Logo({ variant = "header", className = "" }: LogoProps) 
       </div>
 
       {/* Clean Wordmark */}
-      <div style={{ display: "flex", flexDirection: "column", lineHeight: 1.1 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "0.35rem" }}>
+      {showText && (
+        <div style={{ display: "flex", flexDirection: "column", lineHeight: 1.1 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.35rem" }}>
+            <span
+              style={{
+                fontSize: "1.1rem",
+                fontWeight: 800,
+                letterSpacing: "-0.02em",
+                color: isWhite ? "#FFFFFF" : "#10231A",
+              }}
+            >
+              Verification
+            </span>
+            <span
+              style={{
+                fontSize: "1.1rem",
+                fontWeight: 500,
+                letterSpacing: "-0.01em",
+                color: isWhite ? "rgba(255, 255, 255, 0.9)" : "#087443",
+              }}
+            >
+              Platform
+            </span>
+          </div>
           <span
             style={{
-              fontSize: "1.1rem",
-              fontWeight: 800,
-              letterSpacing: "-0.02em",
-              color: isWhite ? "#FFFFFF" : "#10231A",
+              fontSize: "0.68rem",
+              fontWeight: 600,
+              letterSpacing: "0.09em",
+              textTransform: "uppercase",
+              color: isWhite ? "rgba(255, 255, 255, 0.7)" : "#8A9991",
+              marginTop: "2px",
             }}
           >
-            Verification
-          </span>
-          <span
-            style={{
-              fontSize: "1.1rem",
-              fontWeight: 500,
-              letterSpacing: "-0.01em",
-              color: isWhite ? "rgba(255, 255, 255, 0.9)" : "#087443",
-            }}
-          >
-            Platform
+            Identity & Clearance Services
           </span>
         </div>
-        <span
-          style={{
-            fontSize: "0.68rem",
-            fontWeight: 600,
-            letterSpacing: "0.09em",
-            textTransform: "uppercase",
-            color: isWhite ? "rgba(255, 255, 255, 0.7)" : "#8A9991",
-            marginTop: "2px",
-          }}
-        >
-          Identity & Clearance Services
-        </span>
-      </div>
+      )}
     </div>
   );
 }
