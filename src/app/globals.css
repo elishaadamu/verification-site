@@ -1,4 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+
 :root {
+  --font-manrope: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
   /* Brand Emerald Palette */
   --primary-emerald: #087443;
   --secondary-emerald: #16A866;
